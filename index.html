@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DevFormat Pro | Free JSON Formatter, CSV Converter & Developer Utility Suite</title>
+  <meta name="description" content="Free, 100% private, client-side developer utility suite. Format and validate JSON, convert JSON to CSV, decode JWT tokens, encode Base64, and test RegEx. No data leaves your browser.">
+  <meta name="keywords" content="json formatter, json validator, json to csv, csv to json, base64 encoder decoder, jwt decoder, regex tester, online developer tools">
+  <meta name="author" content="DevFormat Pro">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://devformatpro.com/">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="DevFormat Pro | Free Developer & Data Utility Suite">
+  <meta property="og:description" content="Format JSON, convert CSV, decode JWTs, and test RegEx in real-time. 100% private client-side execution.">
+  <meta property="og:url" content="https://devformatpro.com/">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- TOP NAV BAR -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="brand">
+        <span class="brand-logo">⚡</span>
+        <span class="brand-name">DevFormat <span class="brand-badge">PRO</span></span>
+      </a>
+      <div class="privacy-badge">
+        <span class="shield-dot"></span> 100% Client-Side • No Data Uploaded
+      </div>
+      <nav class="nav-links">
+        <a href="#tools">Tools</a>
+        <a href="#faq">FAQ</a>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- TOP AD BANNER SLOT (AdSense Ready) -->
+  <div class="ad-container top-ad-slot">
+    <div class="ad-placeholder">
+      <!-- GOOGLE ADSENSE CODE: Replace this placeholder comment with your ad code -->
+      <span class="ad-tag">Advertisement</span>
+      <div class="ad-mock">Responsive Leaderboard Banner (728x90 / 320x50)</div>
+    </div>
+  </div>
+
+  <!-- HERO SECTION -->
+  <section class="hero">
+    <h1>All-in-One <span class="gradient-text">Developer & Data</span> Toolkit</h1>
+    <p class="hero-sub">Format, validate, convert, and inspect your code and data in real-time. Fast, zero ads interference, and processed 100% locally on your computer for absolute data security.</p>
+  </section>
+
+  <!-- MAIN TOOL TABS & WORKSPACE -->
+  <main class="main-wrapper" id="tools">
+    <!-- Tool Switcher Tabs -->
+    <div class="tool-tabs">
+      <button class="tab-btn active" data-tool="json">
+        <span class="tab-icon">{ }</span> JSON Formatter
+      </button>
+      <button class="tab-btn" data-tool="csv">
+        <span class="tab-icon">☷</span> JSON ⇄ CSV
+      </button>
+      <button class="tab-btn" data-tool="jwt">
+        <span class="tab-icon">🔑</span> JWT Inspector
+      </button>
+      <button class="tab-btn" data-tool="base64">
+        <span class="tab-icon">⇄</span> Base64 & URL
+      </button>
+      <button class="tab-btn" data-tool="regex">
+        <span class="tab-icon">.*</span> RegEx Tester
+      </button>
+    </div>
+
+    <!-- TOOL 1: JSON FORMATTER & VALIDATOR -->
+    <section class="tool-card" id="tool-json">
+      <div class="tool-toolbar">
+        <div class="toolbar-left">
+          <span class="tool-title">JSON Formatter & Validator</span>
+          <span id="json-status" class="status-badge status-ready">Ready</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="action-btn" onclick="loadSampleJson()">Load Sample</button>
+          <button class="action-btn" onclick="formatJson(2)">Format (2 spaces)</button>
+          <button class="action-btn" onclick="formatJson(4)">Format (4 spaces)</button>
+          <button class="action-btn" onclick="minifyJson()">Minify</button>
+          <button class="action-btn btn-primary" onclick="copyToClipboard('json-output')">Copy Output</button>
+          <button class="action-btn btn-danger" onclick="clearJson()">Clear</button>
+        </div>
+      </div>
+
+      <div class="editor-grid">
+        <div class="editor-pane">
+          <div class="pane-header">
+            <span>Input JSON</span>
+            <span id="input-stats">0 chars</span>
+          </div>
+          <textarea id="json-input" placeholder="Paste your raw, messy, or minified JSON here..." spellcheck="false"></textarea>
+        </div>
+        <div class="editor-pane">
+          <div class="pane-header">
+            <span>Formatted Output</span>
+            <span id="output-stats">0 chars</span>
+          </div>
+          <textarea id="json-output" readonly placeholder="Formatted output will appear here..." spellcheck="false"></textarea>
+        </div>
+      </div>
+      <div id="json-error-banner" class="error-banner" style="display: none;"></div>
+    </section>
+
+    <!-- TOOL 2: JSON ⇄ CSV CONVERTER -->
+    <section class="tool-card" id="tool-csv" style="display: none;">
+      <div class="tool-toolbar">
+        <div class="toolbar-left">
+          <span class="tool-title">JSON ⇄ CSV Converter</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="action-btn" onclick="loadSampleCsvData()">Load Sample</button>
+          <button class="action-btn btn-primary" onclick="convertJsonToCsv()">JSON ➔ CSV</button>
+          <button class="action-btn btn-primary" onclick="convertCsvToJson()">CSV ➔ JSON</button>
+          <button class="action-btn" onclick="downloadCsvFile()">Download CSV</button>
+          <button class="action-btn btn-danger" onclick="clearCsvTool()">Clear</button>
+        </div>
+      </div>
+
+      <div class="editor-grid">
+        <div class="editor-pane">
+          <div class="pane-header"><span>JSON Input (Array of Objects)</span></div>
+          <textarea id="csv-json-input" placeholder='[{"id": 1, "name": "Alice", "role": "Engineer"}, {"id": 2, "name": "Bob", "role": "Designer"}]' spellcheck="false"></textarea>
+        </div>
+        <div class="editor-pane">
+          <div class="pane-header"><span>CSV Output / Input</span></div>
+          <textarea id="csv-output" placeholder="id,name,role&#10;1,Alice,Engineer&#10;2,Bob,Designer" spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL 3: JWT INSPECTOR -->
+    <section class="tool-card" id="tool-jwt" style="display: none;">
+      <div class="tool-toolbar">
+        <div class="toolbar-left">
+          <span class="tool-title">JWT (JSON Web Token) Debugger</span>
+          <span id="jwt-status" class="status-badge status-ready">Waiting for Token</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="action-btn" onclick="loadSampleJwt()">Load Sample JWT</button>
+          <button class="action-btn btn-danger" onclick="clearJwt()">Clear</button>
+        </div>
+      </div>
+
+      <div class="jwt-input-wrap">
+        <label>Paste Encoded JWT Token:</label>
+        <textarea id="jwt-input" placeholder="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c" spellcheck="false"></textarea>
+      </div>
+
+      <div class="editor-grid" style="margin-top: 15px;">
+        <div class="editor-pane">
+          <div class="pane-header"><span style="color: #ef4444;">Header (Algorithm & Type)</span></div>
+          <textarea id="jwt-header-output" readonly placeholder="Header JSON" spellcheck="false"></textarea>
+        </div>
+        <div class="editor-pane">
+          <div class="pane-header"><span style="color: #8b5cf6;">Payload (Claims & Expiration)</span></div>
+          <textarea id="jwt-payload-output" readonly placeholder="Payload JSON" spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL 4: BASE64 & URL ENCODER/DECODER -->
+    <section class="tool-card" id="tool-base64" style="display: none;">
+      <div class="tool-toolbar">
+        <div class="toolbar-left">
+          <span class="tool-title">Base64 & URL Encoder / Decoder</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="action-btn" onclick="runBase64Encode()">Base64 Encode</button>
+          <button class="action-btn" onclick="runBase64Decode()">Base64 Decode</button>
+          <button class="action-btn" onclick="runUrlEncode()">URL Encode</button>
+          <button class="action-btn" onclick="runUrlDecode()">URL Decode</button>
+          <button class="action-btn btn-danger" onclick="clearBase64()">Clear</button>
+        </div>
+      </div>
+
+      <div class="editor-grid">
+        <div class="editor-pane">
+          <div class="pane-header"><span>Input Text</span></div>
+          <textarea id="base64-input" placeholder="Enter text to encode or decode..." spellcheck="false"></textarea>
+        </div>
+        <div class="editor-pane">
+          <div class="pane-header"><span>Result</span></div>
+          <textarea id="base64-output" readonly placeholder="Result will appear here..." spellcheck="false"></textarea>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOOL 5: REGEX TESTER -->
+    <section class="tool-card" id="tool-regex" style="display: none;">
+      <div class="tool-toolbar">
+        <div class="toolbar-left">
+          <span class="tool-title">Real-Time Regular Expression (RegEx) Tester</span>
+        </div>
+        <div class="toolbar-right">
+          <button class="action-btn" onclick="loadSampleRegex()">Load Sample</button>
+          <button class="action-btn btn-danger" onclick="clearRegex()">Clear</button>
+        </div>
+      </div>
+
+      <div class="regex-controls">
+        <div class="regex-field">
+          <span class="regex-slash">/</span>
+          <input type="text" id="regex-pattern" placeholder="Regular expression pattern (e.g. [a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+)" spellcheck="false">
+          <span class="regex-slash">/</span>
+          <input type="text" id="regex-flags" value="gm" placeholder="flags (g, i, m, s)" style="width: 70px;">
+        </div>
+      </div>
+
+      <div class="editor-grid" style="margin-top: 15px;">
+        <div class="editor-pane">
+          <div class="pane-header"><span>Test String</span></div>
+          <textarea id="regex-text" placeholder="Paste test text here to find matches..." spellcheck="false"></textarea>
+        </div>
+        <div class="editor-pane">
+          <div class="pane-header"><span>Highlighted Matches</span><span id="regex-match-count">0 matches</span></div>
+          <div id="regex-highlight-view" class="highlight-box">Matches will be highlighted in real time here...</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- MID-PAGE AD BANNER (AdSense High-CTR Placement) -->
+  <div class="ad-container mid-ad-slot">
+    <div class="ad-placeholder">
+      <!-- GOOGLE ADSENSE CODE: Replace this with your in-article / display ad unit -->
+      <span class="ad-tag">Advertisement</span>
+      <div class="ad-mock">High-Impact Responsive Ad Unit (728x90 / 300x250)</div>
+    </div>
+  </div>
+
+  <!-- RICH SEO CONTENT SECTION (Crucial for AdSense Approval & Google Ranking) -->
+  <section class="seo-content-section" id="faq">
+    <div class="content-container">
+      <h2>Why Developers & Data Teams Rely on DevFormat Pro</h2>
+      <p class="lead-text">DevFormat Pro was built to eliminate the frustration of slow, bloated, and ad-cluttered developer utilities. Every single transformation is executed entirely in your local browser using modern Web APIs—guaranteeing sub-millisecond execution times and 100% data confidentiality.</p>
+
+      <div class="feature-grid">
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>Zero Server Uploads</h3>
+          <p>Unlike other formatters that send your proprietary database dumps or user tokens to third-party cloud servers, DevFormat Pro operates entirely client-side. Your sensitive credentials, API keys, and customer records never leave your machine.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>Sub-Millisecond Speed</h3>
+          <p>Instant parsing powered by native browser V8 JavaScript engines. Format megabytes of raw JSON or convert complex CSV arrays without frustrating network latency or loading spinners.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🛠️</div>
+          <h3>Multi-Tool Workflow</h3>
+          <p>Seamlessly pivot from validating JSON schemas to inspecting JWT authentication tokens, decoding Base64 payloads, and debugging regular expressions—all inside one cohesive dark-mode workspace.</p>
+        </div>
+      </div>
+
+      <!-- Comprehensive SEO FAQ -->
+      <div class="faq-section">
+        <h2>Frequently Asked Questions (FAQ)</h2>
+
+        <div class="faq-item">
+          <h4>What is JSON formatting and why is it necessary?</h4>
+          <p>JSON (JavaScript Object Notation) is the universal data format for modern web APIs, microservices, and databases. When transmitted over the internet, JSON is typically minified (stripped of whitespace, line breaks, and indentation) to conserve network bandwidth. Formatting (or "prettifying") JSON reconstructs the structural hierarchy, making it human-readable for debugging, logging, and documentation purposes.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Is it safe to format sensitive credentials, API keys, and JWT tokens here?</h4>
+          <p>Yes, 100%. DevFormat Pro is an offline-capable, client-side web application. No input data, JWT strings, or text payloads are ever transmitted across the internet, logged, or stored on any server. You can verify this by checking your browser's Developer Tools Network tab during execution.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>How does the JSON to CSV conversion handle nested data?</h4>
+          <p>The JSON to CSV engine flattens arrays of uniform JSON objects into standard tabular comma-separated values (CSV) with automatically generated column headers. It handles string escaping, commas within field values, and empty keys seamlessly, producing files fully compatible with Microsoft Excel, Google Sheets, and data science pipelines.</p>
+        </div>
+
+        <div class="faq-item">
+          <h4>Is DevFormat Pro completely free to use?</h4>
+          <p>Yes. DevFormat Pro is 100% free with unlimited usage, zero paywalls, and no account registration required. It is supported by non-intrusive banner advertisements.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="brand-logo">⚡</span>
+        <span class="brand-name">DevFormat <span class="brand-badge">PRO</span></span>
+        <p>The private, lightning-fast developer utility suite. Built for engineers, data analysts, and modern teams.</p>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Legal & Compliance</h4>
+        <ul>
+          <li><a href="privacy.html">Privacy Policy (GDPR / CCPA)</a></li>
+          <li><a href="terms.html">Terms of Service</a></li>
+          <li><a href="about.html">About & Team</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-nav">
+        <h4>Tools</h4>
+        <ul>
+          <li><a href="#tool-json">JSON Formatter & Validator</a></li>
+          <li><a href="#tool-csv">JSON to CSV Converter</a></li>
+          <li><a href="#tool-jwt">JWT Token Debugger</a></li>
+          <li><a href="#tool-base64">Base64 & URL Encoder</a></li>
+          <li><a href="#tool-regex">RegEx Match Tester</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 DevFormat Pro. All rights reserved. 100% Client-Side Execution Guarantee.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notification -->
+  <div id="toast" class="toast">Copied to clipboard!</div>
+
+  <script src="app.js"></script>
+</body>
+</html>
